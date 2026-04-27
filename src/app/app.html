@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/tasks">
+      <strong>Task Manager</strong>
+    </a>
+    <div class="navbar-nav">
+      <a class="nav-link" routerLink="/tasks" routerLinkActive="active">View Tasks</a>
+      <a class="nav-link" routerLink="/add-task" routerLinkActive="active">Add Task</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

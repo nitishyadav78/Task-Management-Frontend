@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Task Dashboard</h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of tasks">
+                        <td><strong>{{ t.title }}</strong></td>
+                        <td>{{ t.description }}</td>
+                        <td><span class="badge bg-info text-dark">{{ t.status }}</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(t.id)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="tasks.length === 0">
+                        <td colspan="4" class="text-center py-4 text-muted">No tasks available.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-primary">
+        <div class="card-body">
+            <h5 class="card-title text-primary mb-3">Quick Add Task</h5>
+            <form #taskForm="ngForm" (ngSubmit)="saveQuickTask()">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="Task Title" [(ngModel)]="newTask.title"
+                            name="title" required #titleInput="ngModel">
+                        <div *ngIf="titleInput.invalid && titleInput.touched" class="text-danger small">Title is
+                            required.</div>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="Task Description"
+                            [(ngModel)]="newTask.description" name="description">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100" [disabled]="taskForm.invalid">
+                            Add Task
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
